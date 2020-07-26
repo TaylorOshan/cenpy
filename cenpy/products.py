@@ -102,7 +102,7 @@ class _Product(object):
         strict_within=True,
         return_bounds=False,
         replace_missing=True,
-        preprocess=True
+        preprocess=True,
     ):
         """
         Query the Census for the given place. 
@@ -784,6 +784,7 @@ class ACS(_Product):
         strict_within=True,
         return_bounds=False,
         replace_missing=True,
+        preprocessing=True,
     ):
         if variables is None:
             variables = []
@@ -801,6 +802,7 @@ class ACS(_Product):
             strict_within=strict_within,
             return_bounds=return_bounds,
             replace_missing=replace_missing,
+            preprocessing=preprocessing,
         )
         variables["GEOID"] = variables.GEO_ID.str.split("US").apply(lambda x: x[1])
         return_table = geoms[["GEOID", "geometry"]].merge(
