@@ -65,14 +65,17 @@ class _Product(object):
         )
 
     def _preprocess_variables(self, columns):
-        if isinstance(columns, str):
-            columns = [columns]
-        expanded = [
-            col
-            for this_pattern in columns
-            for col in self.filter_variables(this_pattern, engine="regex").index
-        ]
-        return numpy.unique(expanded).tolist()
+        if self.preprocessing:
+            if isinstance(columns, str):
+                columns = [columns]
+            expanded = [
+                col
+                for this_pattern in columns
+                for col in self.filter_variables(this_pattern, engine="regex").index
+            ]
+            return numpy.unique(expanded).tolist()
+        else:
+            return numpy.unique(columns).tolist()
 
     @property
     def _layer_lookup(self):
@@ -99,6 +102,7 @@ class _Product(object):
         strict_within=True,
         return_bounds=False,
         replace_missing=True,
+        preprocess=True
     ):
         """
         Query the Census for the given place. 
