@@ -367,6 +367,7 @@ class _Product(object):
         cache_name=None,
         replace_missing=True,
         return_geometry=True,
+        preprocessing=True,
     ):
         """
         A helper function, internal to the product, which pieces together the 
@@ -702,6 +703,7 @@ class ACS(_Product):
         strict_within=True,
         return_bounds=False,
         geometry_precision=2,
+        preprocessing=True,
     ):
         if level not in self._layer_lookup.keys():
             raise NotImplementedError(
@@ -734,6 +736,7 @@ class ACS(_Product):
             strict_within=strict_within,
             return_bounds=return_bounds,
             geometry_precision=geometry_precision,
+            preprocessing=preprocessing,
         )
         variables["GEOID"] = variables.GEO_ID.str.split("US").apply(lambda x: x[1])
         return_table = geoms[["GEOID", "geometry"]].merge(
