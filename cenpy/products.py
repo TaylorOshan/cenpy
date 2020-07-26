@@ -64,8 +64,8 @@ class _Product(object):
             pattern=pattern, by=by, engine=engine, within=self.tables
         )
 
-    def _preprocess_variables(self, columns):
-        if self.preprocessing:
+    def _preprocess_variables(self, columns, preprocessing):
+        if preprocessing:
             if isinstance(columns, str):
                 columns = [columns]
             expanded = [
