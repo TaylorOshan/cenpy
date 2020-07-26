@@ -722,7 +722,7 @@ class ACS(_Product):
             variables = []
         else:
             variables = copy.copy(variables)
-        variables = self._preprocess_variables(variables)
+        variables = self._preprocess_variables(variables, preprocessing)
         variables.append("GEO_ID")
 
         caller = super(ACS, self)._from_name
@@ -793,7 +793,7 @@ class ACS(_Product):
             variables = []
         else:
             variables = copy.copy(variables)
-        variables = self._preprocess_variables(variables)
+        variables = self._preprocess_variables(variables, preprocessing)
         variables.append("GEO_ID")
 
         geoms, variables, *rest = super(ACS, self).from_place(
