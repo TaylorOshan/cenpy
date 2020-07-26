@@ -102,7 +102,7 @@ class _Product(object):
         strict_within=True,
         return_bounds=False,
         replace_missing=True,
-        preprocess=True,
+        preprocessing=True,
     ):
         """
         Query the Census for the given place. 
